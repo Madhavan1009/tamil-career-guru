@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamil Career Guru | தமிழ் தொழில் வழிகாட்டி</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Tamil:ital@0;1&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --kolam-red: #C0392B;
+    --deep-red: #922B21;
+    --gold: #D4AC0D;
+    --bright-gold: #F4D03F;
+    --cream: #FDF6E3;
+    --dark-cream: #F5E6C8;
+    --text-dark: #1A0A00;
+    --text-mid: #4A2800;
+    --green: #1E8449;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .kolam-top {
+    height: 12px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--kolam-red) 0px, var(--kolam-red) 20px,
+      var(--gold) 20px, var(--gold) 40px,
+      var(--deep-red) 40px, var(--deep-red) 60px,
+      var(--gold) 60px, var(--gold) 80px
+    );
+  }
+
+  header {
+    background: linear-gradient(135deg, var(--deep-red) 0%, var(--kolam-red) 50%, #A93226 100%);
+    padding: 32px 24px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background:
+      radial-gradient(circle at 30% 50%, rgba(212,172,13,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 70% 50%, rgba(212,172,13,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .header-om {
+    font-size: 28px; margin-bottom: 4px; opacity: 0.9;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px rgba(244,208,63,0.5); }
+    to   { text-shadow: 0 0 25px rgba(244,208,63,0.9), 0 0 50px rgba(244,208,63,0.4); }
+  }
+
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    color: var(--bright-gold);
+    font-size: clamp(24px, 5vw, 36px);
+    letter-spacing: 1px; line-height: 1.2;
+  }
+
+  header .tamil-title {
+    font-family: 'Tiro Tamil', serif;
+    color: rgba(255,255,255,0.85);
+    font-size: clamp(16px, 3vw, 22px);
+    margin-top: 4px;
+  }
+
+  header p.subtitle {
+    color: rgba(255,255,255,0.75);
+    font-size: 13px; margin-top: 8px; font-weight: 300;
+  }
+
+  /* FREE badge */
+  .free-badge {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: pulse-badge 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-badge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  .divider {
+    display: flex; align-items: center;
+    gap: 12px; padding: 0 24px;
+    background: var(--deep-red);
+  }
+  .divider-line { flex: 1; height: 1px; background: rgba(212,172,13,0.4); }
+  .divider-dot  { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 28px 20px 40px;
+  }
+
+  /* How to get key box */
+  .howto-box {
+    background: #F0FDF4;
+    border: 2px solid #BBF7D0;
+    border-left: 5px solid var(--green);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+  }
+
+  .howto-box h4 {
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+
+  .howto-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .howto-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #166534;
+  }
+
+  .howto-step .num {
+    width: 22px; height: 22px;
+    background: var(--green);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0; margin-top: 1px;
+  }
+
+  .howto-step a {
+    color: var(--green);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px dashed var(--green);
+  }
+
+  /* API Key section */
+  .api-section {
+    background: white;
+    border: 2px solid var(--dark-cream);
+    border-left: 5px solid var(--gold);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(192,57,43,0.08);
+  }
+
+  .api-section label {
+    display: block;
+    font-size: 12px; font-weight: 600;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 8px;
+  }
+
+  .api-row { display: flex; gap: 10px; align-items: center; }
+
+  /* Form card */
+  .form-card {
+    background: white;
+    border-radius: 16px;
+    border: 2px solid var(--dark-cream);
+    box-shadow: 0 4px 24px rgba(192,57,43,0.1);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .form-card-header {
+    background: linear-gradient(90deg, #FEF9E7, #FDEBD0);
+    padding: 16px 20px;
+    border-bottom: 2px solid var(--dark-cream);
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .form-card-header .icon {
+    width: 40px; height: 40px;
+    background: var(--kolam-red);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+
+  .form-card-header h2 {
+    font-family: 'DM Serif Display', serif;
+    color: var(--text-dark); font-size: 18px;
+  }
+
+  .form-card-header p { font-size: 12px; color: var(--text-mid); margin-top: 2px; }
+
+  .form-body { padding: 20px; }
+  .form-group { margin-bottom: 16px; }
+
+  .form-group label {
+    display: block;
+    font-size: 12px; font-weight: 600;
+    color: var(--text-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.8px; margin-bottom: 7px;
+  }
+
+  .form-group .tamil-label {
+    font-family: 'Tiro Tamil', serif;
+    font-size: 13px; color: var(--kolam-red);
+    display: block; margin-bottom: 6px;
+    font-weight: normal; text-transform: none; letter-spacing: 0;
+  }
+
+  input, select, textarea {
+    width: 100%; padding: 11px 14px;
+    border: 2px solid #E8D5B0; border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; color: var(--text-dark);
+    background: var(--cream);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--kolam-red);
+    box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+    background: white;
+  }
+
+  input[type="password"] { letter-spacing: 2px; }
+  textarea { resize: vertical; min-height: 80px; }
+  select { cursor: pointer; }
+
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* Language toggle */
+  .lang-toggle {
+    display: flex;
+    background: var(--dark-cream);
+    border-radius: 10px;
+    padding: 4px; gap: 4px;
+  }
+
+  .lang-btn {
+    flex: 1; padding: 8px; border: none;
+    border-radius: 7px; cursor: pointer;
+    font-size: 13px; font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    background: transparent; color: var(--text-mid);
+    transition: all 0.2s;
+  }
+
+  .lang-btn.active {
+    background: var(--kolam-red); color: white;
+    box-shadow: 0 2px 8px rgba(192,57,43,0.3);
+  }
+
+  /* Submit button */
+  .submit-btn {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, var(--deep-red), var(--kolam-red));
+    color: white; border: none; border-radius: 12px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px; cursor: pointer;
+    transition: all 0.3s;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    box-shadow: 0 4px 16px rgba(192,57,43,0.35);
+    position: relative; overflow: hidden;
+  }
+
+  .submit-btn::before {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.4s;
+  }
+
+  .submit-btn:hover::before { left: 100%; }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,57,43,0.4); }
+  .submit-btn:active { transform: translateY(0); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .tamil-btn-text { font-family: 'Tiro Tamil', serif; font-size: 14px; opacity: 0.85; }
+
+  /* Loading */
+  .loading { display: none; text-align: center; padding: 40px 20px; }
+  .loading.show { display: block; }
+
+  .loader {
+    width: 50px; height: 50px;
+    margin: 0 auto 16px; position: relative;
+  }
+
+  .loader::before, .loader::after {
+    content: ''; position: absolute; border-radius: 50%;
+  }
+
+  .loader::before {
+    width: 100%; height: 100%;
+    border: 3px solid var(--dark-cream);
+    border-top-color: var(--kolam-red);
+    animation: spin 0.9s linear infinite;
+  }
+
+  .loader::after {
+    width: 60%; height: 60%; top: 20%; left: 20%;
+    border: 3px solid transparent;
+    border-top-color: var(--gold);
+    animation: spin 0.6s linear infinite reverse;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading p { color: var(--text-mid); font-size: 14px; }
+  .loading .tamil-loading {
+    font-family: 'Tiro Tamil', serif;
+    font-size: 16px; color: var(--kolam-red); margin-top: 4px;
+  }
+
+  /* Result */
+  .result-card {
+    display: none; background: white;
+    border-radius: 16px; border: 2px solid var(--dark-cream);
+    box-shadow: 0 4px 24px rgba(192,57,43,0.12);
+    overflow: hidden; animation: slideUp 0.4s ease;
+  }
+
+  .result-card.show { display: block; }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-header {
+    background: linear-gradient(135deg, var(--deep-red), var(--kolam-red));
+    padding: 18px 22px;
+    display: flex; align-items: center; gap: 14px;
+  }
+
+  .result-header .guru-icon {
+    font-size: 36px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.08); }
+  }
+
+  .result-header h3 {
+    font-family: 'DM Serif Display', serif;
+    color: var(--bright-gold); font-size: 20px;
+  }
+
+  .result-header p { color: rgba(255,255,255,0.8); font-size: 12px; margin-top: 2px; }
+
+  .result-body {
+    padding: 24px; line-height: 1.8;
+    color: var(--text-dark); font-size: 14.5px;
+  }
+
+  .result-body h3 {
+    font-family: 'DM Serif Display', serif;
+    color: var(--kolam-red); font-size: 17px;
+    margin: 18px 0 8px;
+    border-bottom: 2px solid var(--dark-cream);
+    padding-bottom: 6px;
+  }
+
+  .result-body p { margin-bottom: 10px; }
+  .result-body strong { color: var(--deep-red); }
+
+  .arrow-point {
+    display: block;
+    padding-left: 16px; margin: 4px 0;
+  }
+
+  .result-footer {
+    padding: 14px 22px; background: #FEFAF0;
+    border-top: 2px solid var(--dark-cream);
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+
+  .tag {
+    padding: 5px 12px; background: var(--dark-cream);
+    border-radius: 20px; font-size: 12px;
+    color: var(--text-mid); font-weight: 500;
+  }
+
+  /* Error */
+  .error-msg {
+    display: none; background: #FEF2F2;
+    border: 2px solid #FECACA;
+    border-left: 5px solid var(--kolam-red);
+    border-radius: 10px; padding: 14px 16px;
+    color: var(--deep-red); font-size: 14px; margin-top: 16px;
+  }
+  .error-msg.show { display: block; }
+
+  /* Reset */
+  .reset-btn {
+    width: 100%; margin-top: 16px; padding: 12px;
+    background: transparent;
+    border: 2px solid var(--kolam-red); border-radius: 10px;
+    color: var(--kolam-red);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .reset-btn:hover { background: var(--kolam-red); color: white; }
+
+  footer {
+    text-align: center; padding: 20px;
+    color: var(--text-mid); font-size: 12px;
+    border-top: 2px solid var(--dark-cream);
+    background: white;
+  }
+  footer .powered { font-weight: 600; color: #1565C0; }
+  footer .free-tag {
+    display: inline-block;
+    background: var(--green); color: white;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 7px; border-radius: 10px;
+    margin-left: 4px; vertical-align: middle;
+  }
+
+  .kolam-dots {
+    display: flex; justify-content: center;
+    gap: 8px; margin: 20px 0;
+  }
+  .kolam-dots span {
+    width: 8px; height: 8px;
+    border-radius: 50%; background: var(--gold); opacity: 0.4;
+  }
+  .kolam-dots span:nth-child(3) {
+    opacity: 1; background: var(--kolam-red);
+    width: 12px; height: 12px;
+  }
+
+  @media (max-width: 480px) {
+    .row-2 { grid-template-columns: 1fr; }
+    .lang-btn { font-size: 11px; padding: 7px 4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="kolam-top"></div>
+
+<header>
+  <div class="header-om">🪔</div>
+  <h1>Tamil Career Guru</h1>
+  <p class="tamil-title">தமிழ் தொழில் வழிகாட்டி</p>
+  <p class="subtitle">AI-powered career guidance in Tamil &amp; English</p>
+  <div><span class="free-badge">✅ 100% Free — Powered by Google Gemini</span></div>
+</header>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <div class="divider-dot"></div>
+  <div class="divider-line"></div>
+</div>
+
+<div class="container">
+
+  <!-- How to get free API key -->
+  <div class="howto-box">
+    <h4>🔑 How to Get Your FREE Gemini API Key (2 minutes)</h4>
+    <div class="howto-steps">
+      <div class="howto-step">
+        <span class="num">1</span>
+        <span>Go to <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> — sign in with your Google account</span>
+      </div>
+      <div class="howto-step">
+        <span class="num">2</span>
+        <span>Click <strong>"Get API Key"</strong> on the top left → click <strong>"Create API Key"</strong></span>
+      </div>
+      <div class="howto-step">
+        <span class="num">3</span>
+        <span>Copy the key that starts with <strong>AIza...</strong> → paste it below</span>
+      </div>
+      <div class="howto-step">
+        <span class="num">4</span>
+        <span>Done! Free tier = <strong>1500 requests/day</strong> — no credit card needed 🎉</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- API Key input -->
+  <div class="api-section">
+    <label>🔑 Your Free Gemini API Key</label>
+    <div class="api-row">
+      <input type="password" id="apiKey"
+        placeholder="AIzaSy..." style="flex:1; margin:0;" />
+    </div>
+    <p style="font-size:11px; color:#999; margin-top:6px;">
+      Your key is never stored. Used only to call Gemini directly from your browser.
+    </p>
+  </div>
+
+  <!-- Form Card -->
+  <div class="form-card">
+    <div class="form-card-header">
+      <div class="icon">🎯</div>
+      <div>
+        <h2>Your Career Profile</h2>
+        <p>உங்கள் தொழில் விவரங்களை உள்ளிடவும்</p>
+      </div>
+    </div>
+
+    <div class="form-body">
+
+      <!-- Language -->
+      <div class="form-group">
+        <label>Response Language &nbsp;/&nbsp; மொழி தேர்வு</label>
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang('tamil-english', this)">Tamil + English 🇮🇳</button>
+          <button class="lang-btn" onclick="setLang('english', this)">English Only</button>
+          <button class="lang-btn" onclick="setLang('tamil', this)">Tamil Only 🙏</button>
+        </div>
+      </div>
+
+      <!-- Name + Age -->
+      <div class="row-2">
+        <div class="form-group">
+          <label>Your Name</label>
+          <span class="tamil-label">உங்கள் பெயர்</span>
+          <input type="text" id="name" placeholder="e.g. Enter your name" />
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <span class="tamil-label">வயது</span>
+          <input type="number" id="age" placeholder="e.g. Enter Your Age" min="16" max="60" />
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="form-group">
+        <label>Education</label>
+        <span class="tamil-label">கல்வி தகுதி</span>
+        <select id="education">
+          <option value="">Select your qualification...</option>
+          <option value="10th pass">10th Pass / SSLC</option>
+          <option value="12th pass">12th Pass / HSC</option>
+          <option value="Diploma">Diploma</option>
+          <option value="BE/BTech CSE">BE/BTech — CSE</option>
+          <option value="BE/BTech other">BE/BTech — Other Branch</option>
+          <option value="BSc Computer Science">BSc Computer Science</option>
+          <option value="BCA">BCA</option>
+          <option value="MCA">MCA</option>
+          <option value="MBA">MBA</option>
+          <option value="Other Graduate">Other Graduate</option>
+        </select>
+      </div>
+
+      <!-- Skills -->
+      <div class="form-group">
+        <label>Current Skills</label>
+        <span class="tamil-label">தற்போதைய திறன்கள்</span>
+        <textarea id="skills"
+          placeholder="e.g. Python basics, HTML, Manual Testing, MS Excel..."></textarea>
+      </div>
+
+      <!-- Domain -->
+      <div class="form-group">
+        <label>Domain Interest</label>
+        <span class="tamil-label">விருப்பமான துறை</span>
+        <select id="domain">
+          <option value="">Select your interest...</option>
+          <option value="AI/ML Engineer">AI/ML Engineer 🤖</option>
+          <option value="Web Developer">Web Developer 🌐</option>
+          <option value="Data Analyst">Data Analyst 📊</option>
+          <option value="Python Developer">Python Developer 🐍</option>
+          <option value="DevOps Engineer">DevOps Engineer ⚙️</option>
+          <option value="Cybersecurity">Cybersecurity 🔐</option>
+          <option value="Mobile App Developer">Mobile App Developer 📱</option>
+          <option value="Not sure - need guidance">Not sure — need guidance 🤔</option>
+        </select>
+      </div>
+
+      <!-- Goal -->
+      <div class="form-group">
+        <label>Your Big Goal</label>
+        <span class="tamil-label">உங்கள் இலக்கு என்ன?</span>
+        <textarea id="goal"
+          placeholder="e.g. Get a job in 1 year, Start my own company, Reach 20 LPA..."
+          style="min-height:65px;"></textarea>
+      </div>
+
+      <!-- Challenge -->
+      <div class="form-group">
+        <label>Biggest Challenge Right Now</label>
+        <span class="tamil-label">தற்போதைய சவால்</span>
+        <select id="challenge">
+          <option value="">Select your challenge...</option>
+          <option value="I don't know where to start">Don't know where to start</option>
+          <option value="employment gap in my resume">Employment gap in resume</option>
+          <option value="low marks in school but good in college">Low school marks, good college marks</option>
+          <option value="no work experience">No work experience</option>
+          <option value="financial pressure to get job fast">Financial pressure — need job fast</option>
+          <option value="self doubt and comparing with others">Self doubt &amp; comparing with others</option>
+          <option value="difficulty staying consistent in learning">Difficulty staying consistent</option>
+        </select>
+      </div>
+
+      <button class="submit-btn" onclick="getGuidance()" id="submitBtn">
+        <span>🙏</span>
+        <span>Get Career Guidance</span>
+        <span class="tamil-btn-text">— வழிகாட்டுதல் பெறுங்கள்</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="loader"></div>
+    <p>Consulting the Career Guru...</p>
+    <p class="tamil-loading">தொழில் வழிகாட்டி யோசிக்கிறார்... 🙏</p>
+  </div>
+
+  <!-- Error -->
+  <div class="error-msg" id="errorMsg"></div>
+
+  <!-- Result -->
+  <div class="result-card" id="resultCard">
+    <div class="result-header">
+      <div class="guru-icon">🧙</div>
+      <div>
+        <h3>Career Guru Says...</h3>
+        <p id="resultSubtitle">Personalised guidance for your journey</p>
+      </div>
+    </div>
+    <div class="result-body" id="resultBody"></div>
+    <div class="result-footer" id="resultTags"></div>
+  </div>
+
+  <button class="reset-btn" id="resetBtn" style="display:none" onclick="resetForm()">
+    ↺ &nbsp; Ask Another Question &nbsp;/&nbsp; மீண்டும் கேளுங்கள்
+  </button>
+
+  <div class="kolam-dots">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    Built with ❤️ for Tamil students &nbsp;·&nbsp;
+    <span class="powered">Powered by Google Gemini AI</span>
+    <span class="free-tag">FREE</span>
+  </p>
+  <p style="margin-top:4px; opacity:0.6; font-family:'Tiro Tamil', serif;">
+    தமிழ் மாணவர்களுக்காக உருவாக்கப்பட்டது
+  </p>
+</footer>
+
+<script>
+  let selectedLang = 'tamil-english';
+
+  function setLang(lang, btn) {
+    selectedLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function formatResponse(text) {
+    // Headers
+    text = text.replace(/#{1,3}\s*(.+)/g, '<h3>$1</h3>');
+    // Bold
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // Bullet / dash points
+    text = text.replace(/^[\*\-•]\s+(.+)/gm,
+      '<span class="arrow-point">→ $1</span>');
+    // Numbered lines
+    text = text.replace(/^\d+\.\s+(.+)/gm,
+      '<span class="arrow-point">→ $1</span>');
+    // Paragraphs — wrap double newlines
+    text = text.replace(/\n{2,}/g, '</p><p>');
+    return '<p>' + text + '</p>';
+  }
+
+  async function getGuidance() {
+    const apiKey    = document.getElementById('apiKey').value.trim();
+    const name      = document.getElementById('name').value.trim();
+    const age       = document.getElementById('age').value.trim();
+    const education = document.getElementById('education').value;
+    const skills    = document.getElementById('skills').value.trim();
+    const domain    = document.getElementById('domain').value;
+    const goal      = document.getElementById('goal').value.trim();
+    const challenge = document.getElementById('challenge').value;
+
+    if (!apiKey)    { showError('Please enter your Gemini API key! Get it free from aistudio.google.com 🔑'); return; }
+    if (!name)      { showError('Please enter your name! / உங்கள் பெயரை உள்ளிடவும்!'); return; }
+    if (!education) { showError('Please select your education level!'); return; }
+    if (!skills)    { showError('Please enter your current skills!'); return; }
+    if (!domain)    { showError('Please select your domain interest!'); return; }
+    if (!goal)      { showError('Please enter your goal!'); return; }
+
+    hideError();
+    showLoading(true);
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('resultCard').classList.remove('show');
+    document.getElementById('resetBtn').style.display = 'none';
+
+    const langInstruction =
+      selectedLang === 'tamil-english'
+        ? 'Respond in a natural warm mix of Tamil and English (Tanglish style) — use Tamil for encouragement and emotional support, English for technical terms, roadmap steps, and resource names.'
+        : selectedLang === 'tamil'
+        ? 'Respond entirely in Tamil language.'
+        : 'Respond entirely in English.';
+
+    const prompt = `You are "Tamil Career Guru" — a warm, wise, senior mentor who gives honest, practical, deeply personalised career advice to Tamil students in India. You speak like a knowledgeable elder who genuinely cares.
+
+${langInstruction}
+
+Student Profile:
+- Name: ${name}
+- Age: ${age || 'Not specified'}
+- Education: ${education}
+- Current Skills: ${skills}
+- Domain Interest: ${domain}
+- Big Goal: ${goal}
+- Biggest Challenge: ${challenge || 'Not specified'}
+
+Give a comprehensive personalised career guidance response with exactly these 6 sections:
+
+1. **Personal Message to ${name}** — Warm, direct, address them by name. Acknowledge their situation honestly.
+2. **Honest Assessment** — Where they stand right now. What is strong, what needs work. No sugarcoating.
+3. **Your Roadmap** — Specific 6-month, 12-month, and 2-year step-by-step plan tailored to their exact profile.
+4. **Top 3 Free Resources** — Specific course names, websites, YouTube channels. Free only. No paid courses.
+5. **Challenge Solution** — Directly and practically address their biggest challenge with concrete steps.
+6. **Motivational Close** — End with a Tamil proverb or Tamil cultural wisdom + one powerful final sentence.
+
+Be specific, honest, warm, and 100% practical. Zero generic advice. Treat them like your own younger sibling from Tamil Nadu. 🙏`;
+
+    try {
+      // Try multiple models in order — whichever works first will be used
+      // Try different API versions + models — whichever works first wins
+      // Models confirmed from live API key — all support generateContent
+      const ENDPOINTS = [
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent',
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent',
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',
+      ];
+
+      const body = JSON.stringify({
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.85, maxOutputTokens: 8000, topP: 0.9 }
+      });
+
+      let text = null;
+      let lastError = '';
+
+      for (const endpoint of ENDPOINTS) {
+        const model = endpoint.split('/models/')[1].split(':')[0];
+        try {
+          const url = `${endpoint}?key=${apiKey}`;
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body
+          });
+          const data = await res.json();
+
+          if (res.status === 403) throw new Error('API key invalid. Please create a new key from aistudio.google.com');
+          if (res.status === 429) {
+            // Auto retry after 15 seconds
+            showError('⏳ Rate limit hit — auto retrying in 15 seconds... please wait da!');
+            await new Promise(r => setTimeout(r, 15000));
+            hideError();
+            const res2 = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body });
+            const data2 = await res2.json();
+            if (!res2.ok) { lastError = 'Still rate limited. Please wait 2 minutes and try again.'; continue; }
+            const c2 = data2.candidates?.[0];
+            const t2 = c2?.content?.parts?.[0]?.text;
+            if (t2) { text = t2; break; }
+            lastError = 'Rate limited'; continue;
+          }
+          if (res.status === 400) {
+            const msg = data.error?.message || '';
+            if (msg.includes('API_KEY')) throw new Error('Invalid API key. Make sure you copied the full key starting with AIza...');
+          }
+
+          if (!res.ok) { lastError = `Model ${model} failed (${res.status})`; continue; }
+
+          const candidate = data.candidates?.[0];
+          if (!candidate) { lastError = `No response from ${model}`; continue; }
+          if (candidate.finishReason === 'SAFETY') { lastError = 'Safety block'; continue; }
+
+          const t = candidate.content?.parts?.[0]?.text;
+          if (!t) { lastError = `Empty response from ${model}`; continue; }
+
+          text = t;
+          break; // success — stop trying more models
+
+        } catch (innerErr) {
+          // If it's a critical error (not just model not found), stop immediately
+          if (innerErr.message.includes('API key') || innerErr.message.includes('requests')) {
+            throw innerErr;
+          }
+          lastError = innerErr.message;
+          continue;
+        }
+      }
+
+      if (!text) throw new Error('All models failed. Last error: ' + lastError + '. Please check your API key.');
+
+      showLoading(false);
+      showResult(text, name, domain);
+
+    } catch (err) {
+      showLoading(false);
+      let userMsg = '❌ ' + err.message;
+      if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
+        userMsg = '❌ Network error — check your internet and try again.';
+      }
+      showError(userMsg);
+      document.getElementById('submitBtn').disabled = false;
+    }
+  }
+
+  function showResult(text, name, domain) {
+    document.getElementById('resultSubtitle').textContent =
+      'Personalised for ' + name + ' → ' + domain;
+    document.getElementById('resultBody').innerHTML = formatResponse(text);
+    document.getElementById('resultTags').innerHTML =
+      '<span class="tag">🎯 ' + domain + '</span>' +
+      '<span class="tag">👤 ' + name + '</span>' +
+      '<span class="tag">🤖 Gemini AI</span>' +
+      '<span class="tag">🪔 Tamil Career Guru</span>' +
+      '<span class="tag">✅ Free API</span>';
+    document.getElementById('resultCard').classList.add('show');
+    document.getElementById('resetBtn').style.display = 'block';
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function showLoading(show) {
+    document.getElementById('loading').className = show ? 'loading show' : 'loading';
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    el.textContent = msg;
+    el.className = 'error-msg show';
+  }
+
+  function hideError() {
+    document.getElementById('errorMsg').className = 'error-msg';
+  }
+
+  function resetForm() {
+    document.getElementById('resultCard').classList.remove('show');
+    document.getElementById('resetBtn').style.display = 'none';
+    ['name','age','skills','goal'].forEach(id => document.getElementById(id).value = '');
+    ['education','domain','challenge'].forEach(id => document.getElementById(id).value = '');
+    hideError();
+    window.scrollTo({ behavior: 'smooth', top: 0 });
+  }
+</script>
+</body>
+</html>
